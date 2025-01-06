@@ -1,0 +1,48 @@
+class Solution {
+    static void linkdelete(Node head, int n, int m) {
+        
+        Node temp = head;
+        
+        int skip = 1;
+        
+        int di = 0;
+        
+        Node forward = null;
+        
+        while(temp!=null){
+            
+            //System.out.println("skip is "+skip);
+            if(skip==m){
+                
+                //System.out.println(temp.data);
+                forward = temp.next;
+                
+                di = 1;
+                
+                while(forward!=null && di<=n){
+                    
+                    
+                    forward = forward.next;
+                    
+                    di++;
+                }
+                
+                
+                temp.next = forward;
+                
+                skip = 0;
+                
+            
+            }
+            
+            temp = temp.next;
+            
+            skip++;
+            
+            
+            
+        }
+        
+        
+        // your code here
+    }
