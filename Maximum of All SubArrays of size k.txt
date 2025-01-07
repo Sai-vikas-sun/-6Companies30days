@@ -1,0 +1,57 @@
+class Solution {
+    // Function to find maximum of each subarray of size k.
+    public ArrayList<Integer> max_of_subarrays(int arr[], int k) {
+        // Your code here
+        
+        int n = arr.length;
+        
+        //int ans[] = new int[n-k+1];
+        
+        //Till k-1 index one subarray and then (n-k) subarrays for (n-k) elements 
+        // so total possible subarrays = (n-k)+1;
+        
+        ArrayList<Integer> ans = new ArrayList<>();
+        
+        int windsize = 1;
+        
+        int maxElement = Integer.MIN_VALUE;
+        
+        int prevelement = -1;
+        
+        
+        for(int i=0;i<n;i++){
+            
+            maxElement = Math.max(maxElement,arr[i]);
+            
+            if(windsize==k){
+                
+                if(maxElement != arr[i] && maxElement == prevelement){
+                    
+                    maxElement = arr[i-k+1];
+                    
+                    for(int l=(i-k)+2;l<=i;l++){
+                        
+                        maxElement = Math.max(maxElement,arr[l]);
+                    }
+                    
+                }
+                
+                prevelement = arr[(i+1)-k];
+                
+                ans.add(maxElement);
+                
+                // ans[j] = maxElement;
+                
+                // j++;
+                
+            }
+            
+            if(windsize!=k){
+                
+                windsize++;
+            }
+        }
+        
+        return ans;
+    }
+}
